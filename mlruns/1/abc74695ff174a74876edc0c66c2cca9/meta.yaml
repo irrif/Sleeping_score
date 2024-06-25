@@ -1,0 +1,15 @@
+artifact_uri: ./mlruns/1/abc74695ff174a74876edc0c66c2cca9/artifacts
+end_time: 1717942796895
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+run_id: abc74695ff174a74876edc0c66c2cca9
+run_name: XGBoost with Bedtime_cluster
+run_uuid: abc74695ff174a74876edc0c66c2cca9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717942793026
+status: 3
+tags: []
+user_id: flori

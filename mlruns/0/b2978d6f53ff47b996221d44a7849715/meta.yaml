@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/flori/Documents/Portfolio/Sleeping_score/mlruns/0/b2978d6f53ff47b996221d44a7849715/artifacts
+end_time: 1717934749613
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b2978d6f53ff47b996221d44a7849715
+run_name: XGBoost without Awake_time
+run_uuid: b2978d6f53ff47b996221d44a7849715
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717934746183
+status: 3
+tags: []
+user_id: flori

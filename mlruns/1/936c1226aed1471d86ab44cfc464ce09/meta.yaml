@@ -1,0 +1,15 @@
+artifact_uri: ./mlruns/1/936c1226aed1471d86ab44cfc464ce09/artifacts
+end_time: 1717942423583
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+run_id: 936c1226aed1471d86ab44cfc464ce09
+run_name: Linear Regression with Bedtime_cluster
+run_uuid: 936c1226aed1471d86ab44cfc464ce09
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717942420266
+status: 3
+tags: []
+user_id: flori

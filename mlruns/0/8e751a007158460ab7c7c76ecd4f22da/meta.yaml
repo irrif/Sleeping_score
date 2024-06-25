@@ -1,0 +1,16 @@
+artifact_uri: file:///C:/Users/flori/Documents/Portfolio/Sleeping_score/mlruns/0/8e751a007158460ab7c7c76ecd4f22da/artifacts
+deleted_time: 1717933063704
+end_time: 1717933036830
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 8e751a007158460ab7c7c76ecd4f22da
+run_name: Random forest without Awake_time
+run_uuid: 8e751a007158460ab7c7c76ecd4f22da
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717933036779
+status: 4
+tags: []
+user_id: flori

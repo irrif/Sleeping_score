@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/flori/Documents/Portfolio/Sleeping_score/mlruns/0/bd2ea135489f4257b2b1815510778d8b/artifacts
+end_time: 1717927526703
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: bd2ea135489f4257b2b1815510778d8b
+run_name: Added Awake_time variable
+run_uuid: bd2ea135489f4257b2b1815510778d8b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717927523037
+status: 3
+tags: []
+user_id: flori

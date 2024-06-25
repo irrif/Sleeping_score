@@ -1,0 +1,17 @@
+artifact_path: Gradient Boosting
+flavors:
+  python_function:
+    env: conda.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.9.16
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.2.1
+mlflow_version: 1.30.0
+model_uuid: 06519857cec54d97afd5d7d777f6fe7e
+run_id: 7ceb3c89913e4f47ad8a9b1b51e79b2a
+utc_time_created: '2024-06-09 14:18:57.626973'

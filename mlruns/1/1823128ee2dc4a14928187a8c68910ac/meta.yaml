@@ -1,0 +1,15 @@
+artifact_uri: ./mlruns/1/1823128ee2dc4a14928187a8c68910ac/artifacts
+end_time: 1717940678981
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+run_id: 1823128ee2dc4a14928187a8c68910ac
+run_name: Base Random Forest
+run_uuid: 1823128ee2dc4a14928187a8c68910ac
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717940675618
+status: 3
+tags: []
+user_id: flori
