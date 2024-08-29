@@ -90,7 +90,7 @@ def regression_metrics(y_true, y_pred, X_df):
 
 
 
-def transform_scores(perf_dict: dict = None) -> dict:
+def transform__cross_val_scores(perf_dict: dict = None) -> dict:
     """
     Transform in the right format scores from cross-validation methods.
     Return the same dictionnary as input with new columns
@@ -244,33 +244,60 @@ def mlflow_linreg(lr_model: LinearRegression, perf_dict: dict, run_name: str = N
     """ 
     Save the model and the associated metrics within a mlflow run 
     Can also save the dataset used for training.
+        
+    Parameters :
+    ------------
+    * lr_model : RandomForestRegressor
+        Linear Regression model
+    * perf_dict : dict
+        Dictionnary containing metrics
+    * run_name : str
+        Name of the run
+    * register_dataset : bool
+        True : register dataset used for training (or whole dataset in case of cross-validation)
+    * dataset : PandasDataset
+        Pandas DataFrame transformed into a MLflow compatible DataFrame
     """
 
     if register_dataset and not dataset:
         raise ValueError("The dataset to register is not provided.")
 
     with mlflow.start_run(run_name=run_name):
-        
+
         if register_dataset:
             mlflow.log_input(dataset, context='training') 
 
-    with mlflow.start_run(run_name=run_name):
-        mlflow.log_metric("train_rmse", perf_dict['lr_rmse_train'])
-        mlflow.log_metric("test_rmse", perf_dict['lr_rmse_test'])
-        mlflow.log_metric("train_mae", perf_dict['lr_mae_train'])
-        mlflow.log_metric("test_mae", perf_dict['lr_mae_test'])
-        mlflow.log_metric("Train_R2", perf_dict['lr_r2_train'])
-        mlflow.log_metric("Test_R2", perf_dict['lr_r2_test'])
+        mlflow.log_metric("Train_rmse", perf_dict['Train_rmse'])
+        mlflow.log_metric("Test_rmse", perf_dict['Test_rmse'])
+        mlflow.log_metric("Train_mae", perf_dict['Train_mae'])
+        mlflow.log_metric("Test_mae", perf_dict['Test_mae'])
+        mlflow.log_metric("Train_R2", perf_dict['Train_R2'])
+        mlflow.log_metric("Test_R2", perf_dict['Test_R2'])
 
         mlflow.sklearn.log_model(lr_model, "Linear_regression")
 
 
 def mlflow_rforest(rf_model: RandomForestRegressor, perf_dict: dict = None, run_name: str = None,
-                   max_depth: int = 3,
-                   register_dataset: bool = None, dataset = None) -> None:
+                   rf_params: dict = None,
+                   register_dataset: bool = None, dataset: PandasDataset = None) -> None:
     """ 
     Save the random forest model and the associated parameters and metrics within a mflow run 
     Can also save the dataset used for training.
+
+    Parameters :
+    ------------
+    * rf_model : RandomForestRegressor
+        Random Forest model
+    * perf_dict : dict
+        Dictionnary containing metrics
+    * run_name : str
+        Name of the run
+    * rf_params : dict
+        Dictionnary containing random forest parameters
+    * register_dataset : bool
+        True : register dataset used for training (or whole dataset in case of cross-validation)
+    * dataset : PandasDataset
+        Pandas DataFrame transformed into a MLflow compatible DataFrame
     """
 
     if register_dataset and not dataset:
@@ -281,27 +308,40 @@ def mlflow_rforest(rf_model: RandomForestRegressor, perf_dict: dict = None, run_
         if register_dataset:
             mlflow.log_input(dataset, context='training') 
 
-    with mlflow.start_run(run_name=run_name):
-        mlflow.log_param("max_depth", max_depth)
+        mlflow.log_param("max_depth", rf_params['max_depth'])
 
-        mlflow.log_metric("train_rmse", perf_dict['rf_rmse_train'])
-        mlflow.log_metric("test_rmse", perf_dict['rf_rmse_test'])
-        mlflow.log_metric("train_mae", perf_dict['rf_mae_train'])
-        mlflow.log_metric("test_mae", perf_dict['rf_mae_test'])
-        mlflow.log_metric("Train_R2", perf_dict['rf_r2_train'])
-        mlflow.log_metric("Test_R2", perf_dict['rf_r2_test'])
+        mlflow.log_metric("Train_rmse", perf_dict['Train_rmse'])
+        mlflow.log_metric("Test_rmse", perf_dict['Test_rmse'])
+        mlflow.log_metric("Train_mae", perf_dict['Train_mae'])
+        mlflow.log_metric("Test_mae", perf_dict['Test_mae'])
+        mlflow.log_metric("Train_R2", perf_dict['Train_R2'])
+        mlflow.log_metric("Test_R2", perf_dict['Test_R2'])
 
         mlflow.sklearn.log_model(rf_model, "Random_forest")
 
 
 def mlflow_gboost(gboost_model: GradientBoostingRegressor, perf_dict: dict = None, run_name: str = None,
                   gboost_params: dict = None,
-                  register_dataset: bool = None, dataset = None,
-                  cross_val_scores: bool = False) -> None:
+                  register_dataset: bool = None, dataset = None) -> None:
     
     """ 
     Save the gradient boosting model and the associated parameters and metrics within a mflow run.
     Can also save the dataset used for training.
+
+    Parameters :
+    ------------
+    * gboost_model : GradientBoostingRegressor
+        Gradient Boosting model
+    * perf_dict : dict
+        Dictionnary containing metrics
+    * run_name : str
+        Name of the run
+    * gboost_params : dict
+        Dictionnary containing gradient boosting parameters
+    * register_dataset : bool
+        True : register dataset used for training (or whole dataset in case of cross-validation)
+    * dataset : PandasDataset
+        Pandas DataFrame transformed into a MLflow compatible DataFrame
     """
 
     if not gboost_params or not isinstance(gboost_params, dict):
@@ -309,28 +349,23 @@ def mlflow_gboost(gboost_model: GradientBoostingRegressor, perf_dict: dict = Non
     
     if register_dataset and not dataset:
         raise ValueError("The dataset to register is not provided.")
-    
-    if cross_val_scores:
-        pass
 
     with mlflow.start_run(run_name=run_name):
         
         if register_dataset:
             mlflow.log_input(dataset, context='training') 
 
-    with mlflow.start_run(run_name=run_name):
-
         mlflow.log_param("learning_rate", gboost_params['learning_rate'])
         mlflow.log_param("n_estimators", gboost_params['n_estimators'])
         mlflow.log_param("max_depth", gboost_params['max_depth'])
         mlflow.log_param("min_samples_leaf", gboost_params['min_samples_leaf'])
 
-        mlflow.log_metric("train_rmse", perf_dict['gboost_rmse_train'])
-        mlflow.log_metric("test_rmse", perf_dict['gboost_rmse_test'])
-        mlflow.log_metric("train_mae", perf_dict['gboost_mae_train'])
-        mlflow.log_metric("test_mae", perf_dict['gboost_mae_test'])
-        mlflow.log_metric("Train_R2", perf_dict['gboost_r2_train'])
-        mlflow.log_metric("Test_R2", perf_dict['gboost_r2_test'])
+        mlflow.log_metric("Train_rmse", perf_dict['Train_rmse'])
+        mlflow.log_metric("Test_rmse", perf_dict['Test_rmse'])
+        mlflow.log_metric("Train_mae", perf_dict['Train_mae'])
+        mlflow.log_metric("Test_mae", perf_dict['Test_mae'])
+        mlflow.log_metric("Train_R2", perf_dict['Train_R2'])
+        mlflow.log_metric("Test_R2", perf_dict['Test_R2'])
 
         mlflow.sklearn.log_model(gboost_model, "Gradient Boosting")
 
@@ -341,6 +376,21 @@ def mlflow_xgboost(xgboost_model: XGBRegressor, perf_dict: dict = None, run_name
     """ 
     Save the XGBoost model and the associated parameters and metrics within a mflow run.
     Can also save the dataset used for training.
+
+    Parameters :
+    ------------
+    * xgboost_model : GradientBoostingRegressor
+        XGBoost model
+    * perf_dict : dict
+        Dictionnary containing metrics
+    * run_name : str
+        Name of the run
+    * xgboost_params : dict
+        Dictionnary containing XGBoost parameters
+    * register_dataset : bool
+        True : register dataset used for training (or whole dataset in case of cross-validation)
+    * dataset : PandasDataset
+        Pandas DataFrame transformed into a MLflow compatible DataFrame
     """
 
     # Check that model parameters are provided or in the proper format
@@ -363,12 +413,12 @@ def mlflow_xgboost(xgboost_model: XGBRegressor, perf_dict: dict = None, run_name
         mlflow.log_param("n_estimators", xgboost_params['n_estimators'])
 
         # Metrics
-        mlflow.log_metric("train_rmse", perf_dict['xgboost_rmse_train'])
-        mlflow.log_metric("test_rmse", perf_dict['xgboost_rmse_test'])
-        mlflow.log_metric("train_mae", perf_dict['xgboost_mae_train'])
-        mlflow.log_metric("test_mae", perf_dict['xgboost_mae_test'])
-        mlflow.log_metric("Train_R2", perf_dict['xgboost_r2_train'])
-        mlflow.log_metric("Test_R2", perf_dict['xgboost_r2_test'])
+        mlflow.log_metric("Train_rmse", perf_dict['Train_rmse'])
+        mlflow.log_metric("Test_rmse", perf_dict['Test_rmse'])
+        mlflow.log_metric("Train_mae", perf_dict['Train_mae'])
+        mlflow.log_metric("Test_mae", perf_dict['Test_mae'])
+        mlflow.log_metric("Train_R2", perf_dict['Train_R2'])
+        mlflow.log_metric("Test_R2", perf_dict['Test_R2'])
 
         mlflow.set_tag('Scoring method', 'K-Fold')
         
@@ -439,21 +489,23 @@ def compute_k_fold_cross_val_scores(X: Union[pd.DataFrame, np.ndarray] = None, y
     
     """
 
+    perf_dict = cross_validate(estimator=model, X=X, y=y, 
+                               cv=n_splits, 
+                               scoring=scoring, return_train_score=True)
+
+    # K-Fold cross validation
     if k_fold:
-        perf_dict = k_fold_cross_val(X=X, y=y, stratified=False,
+        perf_dict = k_fold_cross_val(X=X, y=y, k_fold=True, stratified=False,
                                      n_splits=n_splits, random_state=random_state,
                                      model=model,
                                      scoring=scoring, return_train_score=return_train_score)
 
+    # Stratified K-Fold cross validation
     if stratified_k_fold:
-        perf_dict = k_fold_cross_val(X=X, y=y, stratified=True,
+        perf_dict = k_fold_cross_val(X=X, y=y, k_fold=True, stratified=True,
                                      n_splits=n_splits, random_state=random_state,
                                      model=model,
                                      scoring=scoring, return_train_score=return_train_score)
-        
-    perf_dict = cross_validate(estimator=model, X=X, y=y, 
-                               cv=n_splits, 
-                               scoring=scoring, return_train_score=True)
     
     return perf_dict
 
@@ -464,7 +516,8 @@ def compute_k_fold_cross_val_scores(X: Union[pd.DataFrame, np.ndarray] = None, y
 def lin_reg_train_test(X: pd.DataFrame = None, y: pd.Series = None, test_size: int = None,
                        X_train: pd.DataFrame = None, X_test: pd.DataFrame = None, y_train: pd.DataFrame = None, y_test: pd.DataFrame = None, 
                        random_state: int = 42,
-                       mlflow_register: bool = False, run_name: str = '', **kwargs) -> tuple[LinearRegression, dict]:
+                       mlflow_register: bool = False, run_name: str = '',
+                       register_dataset: bool = False,  **kwargs) -> tuple[LinearRegression, dict]:
     
     """ Train and return the linear regression + the associated performances.
     The function allows us either to provide the dataset and the target variable, or to provide directly split datasets.
@@ -502,6 +555,10 @@ def lin_reg_train_test(X: pd.DataFrame = None, y: pd.Series = None, test_size: i
 
     elif any(split is None for split in [X_train, X_test, y_train, y_test]):
         raise ValueError("Either provide full dataset (X and y) or all four split datasets")
+    
+    if register_dataset:
+        full_df = pd.concat([X_train, y_train], axis=1)
+        compatible_df = transform_dataset(whole_df=full_df, name='Sleeping score', target='Score')
 
     perf_dict = {}
 
@@ -510,20 +567,82 @@ def lin_reg_train_test(X: pd.DataFrame = None, y: pd.Series = None, test_size: i
 
     lr_y_hat_train = lr.predict(X_train)
 
-    perf_dict['lr_rmse_train'], perf_dict['lr_mae_train'], perf_dict['lr_r2_train'], perf_dict['lr_adjusted_r2_train'] = regression_metrics(y_train, lr_y_hat_train, X_train)
+    perf_dict['Train_rmse'], perf_dict['Train_mae'], perf_dict['Train_R2'], perf_dict['Train_R2_adjusted'] = regression_metrics(y_train, lr_y_hat_train, X_train)
 
     lr_y_hat_test = lr.predict(X_test)
 
-    perf_dict['lr_rmse_test'], perf_dict['lr_mae_test'], perf_dict['lr_r2_test'], perf_dict['lr_adjusted_r2_test'] = regression_metrics(y_test, lr_y_hat_test, X_test)
+    perf_dict['Test_rmse'], perf_dict['Test_mae'], perf_dict['Test_R2'], perf_dict['Test_R2_adjusted'] = regression_metrics(y_test, lr_y_hat_test, X_test)
 
     if mlflow_register:
         if not run_name:
             raise ValueError("mlflow_register is set to True but no run_name has been provided.\
                              \nTo prevent this error input either a run_name or an empty string")
         
-        mlflow_linreg(lr_model=lr, perf_dict=perf_dict, run_name=run_name)
+        mlflow_linreg(lr_model=lr, perf_dict=perf_dict, run_name=run_name,
+                      register_dataset=register_dataset, dataset=compatible_df)
 
     return lr, perf_dict
+
+
+
+def lin_reg_cross_val(X: Union[pd.DataFrame, np.ndarray] = None, y: Union[np.ndarray, pd.Series] = None,
+                      random_state: int = 42, k_fold: bool = False, stratified_k_fold: bool = False,
+                      n_splits: int = 5, scoring: Union[str, tuple] = None, return_train_score: bool = False,
+                      mlflow_register: bool = False, register_dataset: bool = False, run_name: str = '', **kwargs) -> dict:
+    """
+    Train the linear regression and return the associated performances computed via either cross validation, K Fold or Stratified K Fold.
+
+    Parameters :
+    ------------
+    * X : pd.DataFrame
+        - Full DataFrame without target variables
+    * y : pd.Series
+        - Target variable Series
+    * k_fold : bool
+        - To perform a K Fold cross validation
+    * stratified_k_fold : bool
+        - To perform a stratified K Fold cross validation
+    * n_splits : int
+        - Number of splits for cross validation, or number of folds for K Fold and stratified K Fold
+    * scoring : str, tuple
+        - metrics to compute  
+    * return_train_score : bool
+        - True : return test and training scores
+        - False : return only test scores
+    * mlflow_register : bool
+        - True : Register the run with mlflow
+    * register_dataset : bool
+        - True : Register the training dataset associated to the mlflow run
+    * run_name : str
+        - run_name of the mlflow run
+    """
+
+     # Initialize the linear regression
+    linear_regression = LinearRegression()
+
+    perf_dict = compute_k_fold_cross_val_scores(X=X, y=y, model=linear_regression,
+                                                random_state=random_state, k_fold=k_fold, stratified_k_fold=stratified_k_fold,
+                                                n_splits=n_splits, scoring=scoring, return_train_score=return_train_score)
+    
+    perf_dict = transform__cross_val_scores(perf_dict=perf_dict)
+    
+    if register_dataset:
+        full_df = pd.concat([X, y], axis=1)
+        compatible_df = transform_dataset(whole_df=full_df, name='Sleeping score', target='Score')
+
+    # run mlflow 
+    if mlflow_register:
+        # If no run name provided, raise an Error
+        if not run_name:
+
+            raise ValueError("mlflow_register is set to True but no run_name has been provided.\
+                             \nTo prevent this error input either a run_name or an empty string")
+        
+        # Function that executes the mlflow run
+        mlflow_linreg(lr_model=linear_regression, perf_dict=perf_dict, run_name=run_name,
+                      register_dataset=register_dataset, dataset=compatible_df)
+        
+    return perf_dict
 
 
 
@@ -584,11 +703,11 @@ def random_forest_train_test(X: pd.DataFrame = None, y: pd.Series = None, test_s
     # Compute metrics
     rf_y_hat_train = rf.predict(X_train)
 
-    perf_dict['rf_rmse_train'], perf_dict['rf_mae_train'], perf_dict['rf_r2_train'], perf_dict['rf_adjusted_r2_train'] = regression_metrics(y_train, rf_y_hat_train, X_train)
+    perf_dict['Train_rmse'], perf_dict['Train_mae'], perf_dict['Train_R2'], perf_dict['rf_adjusted_r2_train'] = regression_metrics(y_train, rf_y_hat_train, X_train)
 
     rf_y_hat_test = rf.predict(X_test)
 
-    perf_dict['rf_rmse_test'], perf_dict['rf_mae_test'], perf_dict['rf_r2_test'], perf_dict['rf_adjusted_r2_test'] = regression_metrics(y_test, rf_y_hat_test, X_test)
+    perf_dict['Test_rmse'], perf_dict['Test_mae'], perf_dict['Test_R2'], perf_dict['rf_adjusted_r2_test'] = regression_metrics(y_test, rf_y_hat_test, X_test)
 
     # run mlflow 
     if mlflow_register:
@@ -635,22 +754,30 @@ def random_forest_cross_val(X: Union[pd.DataFrame, np.ndarray] = None, y: Union[
     # Initialize the random forest 
     random_forest = RandomForestRegressor(max_depth=rf_params['max_depth'], oob_score=True, random_state=random_state)
 
-    return compute_k_fold_cross_val_scores(X=X, y=y, model=random_forest,
-                                           random_state=random_state, k_fold=k_fold, stratified_k_fold=stratified_k_fold,
-                                           n_splits=n_splits, scoring=scoring, return_train_score=return_train_score)
+    perf_dict = compute_k_fold_cross_val_scores(X=X, y=y, model=random_forest,
+                                                random_state=random_state, k_fold=k_fold, stratified_k_fold=stratified_k_fold,
+                                                n_splits=n_splits, scoring=scoring, return_train_score=return_train_score)
     
-    # # run mlflow 
-    # if mlflow_register:
-    #     # If no run name provided, raise an Error
-    #     if not run_name:
+    perf_dict = transform__cross_val_scores(perf_dict=perf_dict)
+    
+    if register_dataset:
+        full_df = pd.concat([X, y], axis=1)
+        compatible_df = transform_dataset(whole_df=full_df, name='Sleeping score', target='Score')
 
-    #         raise ValueError("mlflow_register is set to True but no run_name has been provided.\
-    #                          \nTo prevent this error input either a run_name or an empty string")
+    # run mlflow 
+    if mlflow_register:
+        # If no run name provided, raise an Error
+        if not run_name:
+
+            raise ValueError("mlflow_register is set to True but no run_name has been provided.\
+                             \nTo prevent this error input either a run_name or an empty string")
         
-    #     # Function that executes the mlflow run
-    #     mlflow_rforest(rf_model=random_forest, perf_dict=perf_dict, run_name=run_name,
-    #                    rf_params=rf_params,
-    #                    register_dataset=register_dataset, dataset=compatible_df)
+        # Function that executes the mlflow run
+        mlflow_rforest(rf_model=random_forest, perf_dict=perf_dict, run_name=run_name,
+                       rf_params=rf_params,
+                       register_dataset=register_dataset, dataset=compatible_df)
+        
+    return perf_dict
 
 
 
@@ -772,7 +899,8 @@ def gradient_boosting_train_test(X: pd.DataFrame = None, y: pd.Series = None, te
 def gradient_boosting_cross_val(X: Union[pd.DataFrame, np.ndarray] = None, y: Union[np.ndarray, pd.Series] = None,
                                 gboost_params: dict = None, random_state: int = 42,
                                 k_fold: bool = False, stratified_k_fold: bool = False,
-                                n_splits: int = 5, scoring: Union[str, tuple] = None, return_train_score: bool = False) -> dict:
+                                n_splits: int = 5, scoring: Union[str, tuple] = None, return_train_score: bool = False,
+                                mlflow_register: bool = False, register_dataset: bool = False, run_name: str = '', **kwargs) -> dict:
     """
     Train the gradient boosting and return the associated performances computed via either cross validation, K Fold or Stratified K Fold.
 
@@ -806,11 +934,31 @@ def gradient_boosting_cross_val(X: Union[pd.DataFrame, np.ndarray] = None, y: Un
         verbose = gboost_params['verbose'],
         random_state = random_state
 )
+    
+    perf_dict = compute_k_fold_cross_val_scores(X=X, y=y, model=gboost,
+                                                random_state=random_state, k_fold=k_fold, stratified_k_fold=stratified_k_fold,
+                                                n_splits=n_splits, scoring=scoring, return_train_score=return_train_score)
+    
+    perf_dict = transform__cross_val_scores(perf_dict=perf_dict)
+    
+    if register_dataset:
+        full_df = pd.concat([X, y], axis=1)
+        compatible_df = transform_dataset(whole_df=full_df, name='Sleeping score', target='Score')
 
-    return compute_k_fold_cross_val_scores(X=X, y=y, model=gboost,
-                                           random_state=random_state, k_fold=k_fold, stratified_k_fold=stratified_k_fold,
-                                           n_splits=n_splits, scoring=scoring, return_train_score=return_train_score)
+    # run mlflow 
+    if mlflow_register:
+        # If no run name provided, raise an Error
+        if not run_name:
 
+            raise ValueError("mlflow_register is set to True but no run_name has been provided.\
+                             \nTo prevent this error input either a run_name or an empty string")
+        
+        # Function that executes the mlflow run
+        mlflow_gboost(gboost_model=gboost, perf_dict=perf_dict, run_name=run_name,
+                      gboost_params=gboost_params,
+                      register_dataset=register_dataset, dataset=compatible_df)
+
+    return perf_dict
 
 
 def xgboost_train_test(X: pd.DataFrame = None, y: pd.Series = None, test_size: int = None,
@@ -932,7 +1080,8 @@ def xgboost_train_test(X: pd.DataFrame = None, y: pd.Series = None, test_size: i
 def xgboost_cross_val(X: Union[pd.DataFrame, np.ndarray] = None, y: Union[np.ndarray, pd.Series] = None,
                       xgboost_params: dict = None, random_state: int = 42,
                       k_fold: bool = False, stratified_k_fold: bool = False,
-                      n_splits: int = 5, scoring: Union[str, tuple] = None, return_train_score: bool = False) -> dict:
+                      n_splits: int = 5, scoring: Union[str, tuple] = None, return_train_score: bool = False,
+                      mlflow_register: bool = False, register_dataset: bool = False, run_name: str = '', **kwargs) -> dict:
     """
     Train the XGBoost model and return the associated performances computed via either cross validation, K Fold or Stratified K Fold.
     
@@ -966,6 +1115,27 @@ def xgboost_cross_val(X: Union[pd.DataFrame, np.ndarray] = None, y: Union[np.nda
         random_state = random_state
     )
 
-    return compute_k_fold_cross_val_scores(X=X, y=y, model=xgboost,
-                                           random_state=random_state, k_fold=k_fold, stratified_k_fold=stratified_k_fold,
-                                           n_splits=n_splits, scoring=scoring, return_train_score=return_train_score)
+    perf_dict = compute_k_fold_cross_val_scores(X=X, y=y, model=xgboost,
+                                                random_state=random_state, k_fold=k_fold, stratified_k_fold=stratified_k_fold,
+                                                n_splits=n_splits, scoring=scoring, return_train_score=return_train_score)
+    
+    perf_dict = transform__cross_val_scores(perf_dict=perf_dict)
+    
+    if register_dataset:
+        full_df = pd.concat([X, y], axis=1)
+        compatible_df = transform_dataset(whole_df=full_df, name='Sleeping score', target='Score')
+
+    # run mlflow 
+    if mlflow_register:
+        # If no run name provided, raise an Error
+        if not run_name:
+
+            raise ValueError("mlflow_register is set to True but no run_name has been provided.\
+                             \nTo prevent this error input either a run_name or an empty string")
+        
+        # Function that executes the mlflow run
+        mlflow_xgboost(xgboost_model=xgboost, perf_dict=perf_dict, run_name=run_name,
+                       xgboost_params=xgboost_params,
+                       register_dataset=register_dataset, dataset=compatible_df)
+
+    return perf_dict

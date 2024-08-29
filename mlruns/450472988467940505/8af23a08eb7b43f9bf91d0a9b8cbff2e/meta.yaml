@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/450472988467940505/8af23a08eb7b43f9bf91d0a9b8cbff2e/artifacts
+end_time: 1724942050359
+entry_point_name: ''
+experiment_id: '450472988467940505'
+lifecycle_stage: active
+run_id: 8af23a08eb7b43f9bf91d0a9b8cbff2e
+run_name: Baseline linear regression model with all features | 3-Fold cross validation
+run_uuid: 8af23a08eb7b43f9bf91d0a9b8cbff2e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724942046302
+status: 3
+tags: []
+user_id: flori
