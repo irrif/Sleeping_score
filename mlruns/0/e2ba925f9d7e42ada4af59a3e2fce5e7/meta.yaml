@@ -1,8 +1,9 @@
 artifact_uri: file:///C:/Users/flori/Documents/Portfolio/Sleeping_score/mlruns/0/e2ba925f9d7e42ada4af59a3e2fce5e7/artifacts
+deleted_time: 1724767122065
 end_time: 1717933948272
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: e2ba925f9d7e42ada4af59a3e2fce5e7
 run_name: Gradient Boosting without Awake_time
 run_uuid: e2ba925f9d7e42ada4af59a3e2fce5e7

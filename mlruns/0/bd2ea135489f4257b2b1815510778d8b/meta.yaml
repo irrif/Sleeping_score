@@ -1,8 +1,9 @@
 artifact_uri: file:///C:/Users/flori/Documents/Portfolio/Sleeping_score/mlruns/0/bd2ea135489f4257b2b1815510778d8b/artifacts
+deleted_time: 1724767122067
 end_time: 1717927526703
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: bd2ea135489f4257b2b1815510778d8b
 run_name: Added Awake_time variable
 run_uuid: bd2ea135489f4257b2b1815510778d8b

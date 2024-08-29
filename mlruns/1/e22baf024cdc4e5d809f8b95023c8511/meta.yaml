@@ -1,0 +1,16 @@
+artifact_uri: ./mlruns/1/e22baf024cdc4e5d809f8b95023c8511/artifacts
+deleted_time: 1724774275335
+end_time: 1724773626992
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: deleted
+run_id: e22baf024cdc4e5d809f8b95023c8511
+run_name: XGBoost raw features from feature selection
+run_uuid: e22baf024cdc4e5d809f8b95023c8511
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724773622940
+status: 3
+tags: []
+user_id: flori

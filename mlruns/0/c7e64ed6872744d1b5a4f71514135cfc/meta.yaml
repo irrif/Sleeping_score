@@ -1,0 +1,16 @@
+artifact_uri: file:///C:/Users/flori/Documents/Portfolio/Sleeping_score/mlruns/0/c7e64ed6872744d1b5a4f71514135cfc/artifacts
+deleted_time: 1724765092763
+end_time: 1724694345991
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: c7e64ed6872744d1b5a4f71514135cfc
+run_name: XGBoost raw features from feature selection
+run_uuid: c7e64ed6872744d1b5a4f71514135cfc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724694345899
+status: 4
+tags: []
+user_id: flori

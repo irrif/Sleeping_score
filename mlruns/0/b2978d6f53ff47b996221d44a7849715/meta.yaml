@@ -1,8 +1,9 @@
 artifact_uri: file:///C:/Users/flori/Documents/Portfolio/Sleeping_score/mlruns/0/b2978d6f53ff47b996221d44a7849715/artifacts
+deleted_time: 1724767122066
 end_time: 1717934749613
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: b2978d6f53ff47b996221d44a7849715
 run_name: XGBoost without Awake_time
 run_uuid: b2978d6f53ff47b996221d44a7849715

@@ -1,0 +1,16 @@
+artifact_uri: ./mlruns/1/4dd2a4b6aff445ca9c7ebed671a90025/artifacts
+deleted_time: 1724774264886
+end_time: 1724774224520
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: deleted
+run_id: 4dd2a4b6aff445ca9c7ebed671a90025
+run_name: Gradient Boosting raw features from feature selection
+run_uuid: 4dd2a4b6aff445ca9c7ebed671a90025
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724774220641
+status: 3
+tags: []
+user_id: flori
