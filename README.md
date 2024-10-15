@@ -23,10 +23,10 @@ The model presented in the notebook is the most robust, with the least multicoll
 ## Results
 The final model provides a reliable prediction of the sleep score, with performance metrics averaged across all K folds. The model can be further by incorporating more features from the Garmin dataset.
 
-## Future Work and Limitations
+## Limitations and Future Work
 The biggest limitation of this model is the amount of data available (400 rows, one per day), and consequently the problems this creates for learning.
-Experimenting with additional regression techniques.
-Exploring other sources of sleep-related data to enhance model accuracy.
+- Experimenting with additional regression techniques.
+- Exploring other sources of sleep-related data to enhance model accuracy.
 
 ## Contributions
 Contributions are welcome! Feel free to submit issues or pull requests to enhance the model or improve the codebase.
