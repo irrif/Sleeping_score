@@ -11,9 +11,9 @@ The data for this project were gathered via the Garmin website, which provides d
 - Heart rate variability
 
 ## Model Construction
-The model is built using various regression techniques and evaluated through K-Fold Cross Validation. This ensures that the model's performance is robust and generalizable to unseen data. The metrics reported (such as RMSE, MAE, and R²) are averaged across the K folds to provide a reliable assessment of model performance.
-All training and test metrics are available on a mlflow run to track different models and performance trends.
-The model presented in the notebook is the most robust, with the least multicollinearity between variables.
+The model is built using various regression techniques and evaluated through K-Fold Cross Validation. This ensures that the model's performance is robust and generalizable to unseen data. The metrics reported (such as RMSE, MAE, and R²) are averaged across the K folds to provide a reliable assessment of model performance.    
+All training and test metrics are available on a mlflow run to track different models and performance trends.    
+The model presented in the notebook is the most robust, with the least multicollinearity between variables, and the gradient boosting and XGBoost parameters entered are those from a grid search CV associated with this model.
 
 ## Key Features
 - K-Fold Cross Validation: Each model is evaluated using this technique, ensuring the metrics represent a mean across the folds, reducing variance in performance evaluations.
