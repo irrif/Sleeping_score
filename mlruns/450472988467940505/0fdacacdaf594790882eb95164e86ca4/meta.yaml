@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/450472988467940505/0fdacacdaf594790882eb95164e86ca4/artifacts
+end_time: 1728921462824
+entry_point_name: ''
+experiment_id: '450472988467940505'
+lifecycle_stage: active
+run_id: 0fdacacdaf594790882eb95164e86ca4
+run_name: Random forest with Highest HR outliers removed | 3-Fold cross validation
+run_uuid: 0fdacacdaf594790882eb95164e86ca4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728921458817
+status: 3
+tags: []
+user_id: flori

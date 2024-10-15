@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/450472988467940505/22a3feb0e60945169ea01a60dcd7d7ac/artifacts
+deleted_time: 1728908646555
+end_time: 1728908530225
+entry_point_name: ''
+experiment_id: '450472988467940505'
+lifecycle_stage: deleted
+run_id: 22a3feb0e60945169ea01a60dcd7d7ac
+run_name: XGBoost with features from feature selection | 3-Fold cross validation
+run_uuid: 22a3feb0e60945169ea01a60dcd7d7ac
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728908530092
+status: 4
+tags: []
+user_id: flori

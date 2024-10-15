@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/450472988467940505/c929b7f321034c8daa0efae1072273ec/artifacts
+end_time: 1728921504896
+entry_point_name: ''
+experiment_id: '450472988467940505'
+lifecycle_stage: active
+run_id: c929b7f321034c8daa0efae1072273ec
+run_name: XGBoost with Highest HR outliers removed| 3-Fold cross validation
+run_uuid: c929b7f321034c8daa0efae1072273ec
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728921501292
+status: 3
+tags: []
+user_id: flori

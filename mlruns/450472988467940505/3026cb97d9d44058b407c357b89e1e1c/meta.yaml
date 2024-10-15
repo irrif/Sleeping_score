@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/450472988467940505/3026cb97d9d44058b407c357b89e1e1c/artifacts
+end_time: 1728979833386
+entry_point_name: ''
+experiment_id: '450472988467940505'
+lifecycle_stage: active
+run_id: 3026cb97d9d44058b407c357b89e1e1c
+run_name: XGBoost with Sleep_duration only| 3-Fold cross validation
+run_uuid: 3026cb97d9d44058b407c357b89e1e1c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728979829719
+status: 3
+tags: []
+user_id: flori

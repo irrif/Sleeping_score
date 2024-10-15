@@ -1,0 +1,10 @@
+digest: 37a9a91a
+name: Sleeping score
+profile: '{"num_rows": 392, "num_elements": 1568}'
+schema: '{"mlflow_colspec": [{"type": "double", "name": "Sleep_duration", "required":
+  true}, {"type": "long", "name": "Total_calories", "required": true}, {"type": "double",
+  "name": "respiratory_hr_cols", "required": true}, {"type": "double", "name": "Score",
+  "required": true}]}'
+source: '{"tags": {"mlflow.user": "flori", "mlflow.source.name": "c:\\Users\\flori\\anaconda3\\envs\\ml_py312\\Lib\\site-packages\\ipykernel_launcher.py",
+  "mlflow.source.type": "LOCAL"}}'
+source_type: code

@@ -90,7 +90,7 @@ def regression_metrics(y_true, y_pred, X_df):
 
 
 
-def transform__cross_val_scores(perf_dict: dict = None) -> dict:
+def transform_cross_val_scores(perf_dict: dict = None) -> dict:
     """
     Transform in the right format scores from cross-validation methods.
     Return the same dictionnary as input with new columns
@@ -196,6 +196,8 @@ def univariate_continous_EDA(data: pd.DataFrame = None, var: str = None, target:
 
     if activity_related:
         data = data.loc[data[var] != 0]
+
+    print(data[var].describe(percentiles=[0.01, 0.25, 0.5, 0.75, 0.99]))
 
     fig, axs = plt.subplots(1, 2, figsize=(14, 6))
 
@@ -484,14 +486,16 @@ def k_fold_cross_val(X: pd.DataFrame = None, y: pd.Series = None,
 def compute_k_fold_cross_val_scores(X: Union[pd.DataFrame, np.ndarray] = None, y: Union[np.ndarray, pd.Series] = None,
                                     model: BaseEstimator = None, random_state: int = 42,
                                     k_fold: bool = False, stratified_k_fold: bool = False,  n_splits: int = 5,
-                                    scoring: Union[str, tuple] = None, return_train_score: bool = False) -> dict:
+                                    scoring: Union[str, tuple] = None, return_train_score: bool = False,
+                                    return_estimator : bool = False) -> dict:
     """
     
     """
 
     perf_dict = cross_validate(estimator=model, X=X, y=y, 
                                cv=n_splits, 
-                               scoring=scoring, return_train_score=True)
+                               scoring=scoring, return_train_score=return_train_score,
+                               return_estimator=return_estimator)
 
     # K-Fold cross validation
     if k_fold:
@@ -587,7 +591,8 @@ def lin_reg_train_test(X: pd.DataFrame = None, y: pd.Series = None, test_size: i
 
 def lin_reg_cross_val(X: Union[pd.DataFrame, np.ndarray] = None, y: Union[np.ndarray, pd.Series] = None,
                       random_state: int = 42, k_fold: bool = False, stratified_k_fold: bool = False,
-                      n_splits: int = 5, scoring: Union[str, tuple] = None, return_train_score: bool = False,
+                      n_splits: int = 5, scoring: Union[str, tuple] = None,
+                      return_train_score: bool = False, return_estimator: bool = False,
                       mlflow_register: bool = False, register_dataset: bool = False, run_name: str = '', **kwargs) -> dict:
     """
     Train the linear regression and return the associated performances computed via either cross validation, K Fold or Stratified K Fold.
@@ -609,6 +614,8 @@ def lin_reg_cross_val(X: Union[pd.DataFrame, np.ndarray] = None, y: Union[np.nda
     * return_train_score : bool
         - True : return test and training scores
         - False : return only test scores
+    * return_estimator : bool
+        - True : Returns the coefficients of each variable, for each cross-validation
     * mlflow_register : bool
         - True : Register the run with mlflow
     * register_dataset : bool
@@ -620,11 +627,12 @@ def lin_reg_cross_val(X: Union[pd.DataFrame, np.ndarray] = None, y: Union[np.nda
      # Initialize the linear regression
     linear_regression = LinearRegression()
 
-    perf_dict = compute_k_fold_cross_val_scores(X=X, y=y, model=linear_regression,
-                                                random_state=random_state, k_fold=k_fold, stratified_k_fold=stratified_k_fold,
-                                                n_splits=n_splits, scoring=scoring, return_train_score=return_train_score)
+    perf_dict = compute_k_fold_cross_val_scores(X=X, y=y, model=linear_regression, random_state=random_state, 
+                                                k_fold=k_fold, stratified_k_fold=stratified_k_fold,
+                                                n_splits=n_splits, scoring=scoring, 
+                                                return_train_score=return_train_score, return_estimator=return_estimator)
     
-    perf_dict = transform__cross_val_scores(perf_dict=perf_dict)
+    perf_dict = transform_cross_val_scores(perf_dict=perf_dict)
     
     if register_dataset:
         full_df = pd.concat([X, y], axis=1)
@@ -758,7 +766,7 @@ def random_forest_cross_val(X: Union[pd.DataFrame, np.ndarray] = None, y: Union[
                                                 random_state=random_state, k_fold=k_fold, stratified_k_fold=stratified_k_fold,
                                                 n_splits=n_splits, scoring=scoring, return_train_score=return_train_score)
     
-    perf_dict = transform__cross_val_scores(perf_dict=perf_dict)
+    perf_dict = transform_cross_val_scores(perf_dict=perf_dict)
     
     if register_dataset:
         full_df = pd.concat([X, y], axis=1)
@@ -939,11 +947,13 @@ def gradient_boosting_cross_val(X: Union[pd.DataFrame, np.ndarray] = None, y: Un
                                                 random_state=random_state, k_fold=k_fold, stratified_k_fold=stratified_k_fold,
                                                 n_splits=n_splits, scoring=scoring, return_train_score=return_train_score)
     
-    perf_dict = transform__cross_val_scores(perf_dict=perf_dict)
+    perf_dict = transform_cross_val_scores(perf_dict=perf_dict)
     
     if register_dataset:
         full_df = pd.concat([X, y], axis=1)
         compatible_df = transform_dataset(whole_df=full_df, name='Sleeping score', target='Score')
+    else:
+        compatible_df = None
 
     # run mlflow 
     if mlflow_register:
@@ -1028,6 +1038,8 @@ def xgboost_train_test(X: pd.DataFrame = None, y: pd.Series = None, test_size: i
     if register_dataset:
         full_df = pd.concat([X_train, y_train], axis=1)
         compatible_df = transform_dataset(whole_df=full_df, name='Sleeping score', target='Score')
+    else:
+        compatible_df = None
 
     perf_dict = {}
 
@@ -1119,11 +1131,13 @@ def xgboost_cross_val(X: Union[pd.DataFrame, np.ndarray] = None, y: Union[np.nda
                                                 random_state=random_state, k_fold=k_fold, stratified_k_fold=stratified_k_fold,
                                                 n_splits=n_splits, scoring=scoring, return_train_score=return_train_score)
     
-    perf_dict = transform__cross_val_scores(perf_dict=perf_dict)
+    perf_dict = transform_cross_val_scores(perf_dict=perf_dict)
     
     if register_dataset:
         full_df = pd.concat([X, y], axis=1)
         compatible_df = transform_dataset(whole_df=full_df, name='Sleeping score', target='Score')
+    else:
+        compatible_df = None
 
     # run mlflow 
     if mlflow_register:

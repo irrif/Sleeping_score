@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/450472988467940505/514df946fa864a3aaec09063038706b4/artifacts
+end_time: 1728987172057
+entry_point_name: ''
+experiment_id: '450472988467940505'
+lifecycle_stage: active
+run_id: 514df946fa864a3aaec09063038706b4
+run_name: Random forest with selected variables and no multicollinearity | 3-Fold
+  cross validation
+run_uuid: 514df946fa864a3aaec09063038706b4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728987168237
+status: 3
+tags: []
+user_id: flori

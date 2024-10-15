@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/450472988467940505/af93b7ab715545f98bbc4d0b2bc4bbbb/artifacts
+end_time: 1728980034033
+entry_point_name: ''
+experiment_id: '450472988467940505'
+lifecycle_stage: active
+run_id: af93b7ab715545f98bbc4d0b2bc4bbbb
+run_name: Linear regression with newly created sleeping cols only | 3-Fold cross validation
+run_uuid: af93b7ab715545f98bbc4d0b2bc4bbbb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728980030273
+status: 3
+tags: []
+user_id: flori

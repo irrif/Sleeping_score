@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/450472988467940505/854802579c574f34b8034213ffa717ca/artifacts
+end_time: 1728921053166
+entry_point_name: ''
+experiment_id: '450472988467940505'
+lifecycle_stage: active
+run_id: 854802579c574f34b8034213ffa717ca
+run_name: Random forest with activity type 2 and 3 removed | 3-Fold cross validation
+run_uuid: 854802579c574f34b8034213ffa717ca
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728921049344
+status: 3
+tags: []
+user_id: flori

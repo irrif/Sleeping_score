@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/450472988467940505/220f68647ebf494584e51f1d77ce4753/artifacts
+end_time: 1728980057915
+entry_point_name: ''
+experiment_id: '450472988467940505'
+lifecycle_stage: active
+run_id: 220f68647ebf494584e51f1d77ce4753
+run_name: Gradient Boosting with newly created sleeping cols only | 3-Fold cross validation
+run_uuid: 220f68647ebf494584e51f1d77ce4753
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728980054210
+status: 3
+tags: []
+user_id: flori

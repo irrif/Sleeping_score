@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/450472988467940505/ac678f058a5b4b1ba84f60e4adc20dde/artifacts
+end_time: 1728921424744
+entry_point_name: ''
+experiment_id: '450472988467940505'
+lifecycle_stage: active
+run_id: ac678f058a5b4b1ba84f60e4adc20dde
+run_name: Linear regression with Highest HR outliers removed | 3-Fold cross validation
+run_uuid: ac678f058a5b4b1ba84f60e4adc20dde
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728921421026
+status: 3
+tags: []
+user_id: flori

@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/450472988467940505/ced7771574af4cc6a79467af334e153f/artifacts
+end_time: 1728921481425
+entry_point_name: ''
+experiment_id: '450472988467940505'
+lifecycle_stage: active
+run_id: ced7771574af4cc6a79467af334e153f
+run_name: Gradient Boosting with Highest HR outliers removed | 3-Fold cross validation
+run_uuid: ced7771574af4cc6a79467af334e153f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728921477419
+status: 3
+tags: []
+user_id: flori

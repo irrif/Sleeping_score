@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/450472988467940505/d7ff59e9e52e4df98f9d5ba4c0218f52/artifacts
+deleted_time: 1728913880041
+end_time: 1728912665884
+entry_point_name: ''
+experiment_id: '450472988467940505'
+lifecycle_stage: deleted
+run_id: d7ff59e9e52e4df98f9d5ba4c0218f52
+run_name: Gradient Boosting with features from feature selection | 3-Fold cross validation
+run_uuid: d7ff59e9e52e4df98f9d5ba4c0218f52
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728912665800
+status: 4
+tags: []
+user_id: flori

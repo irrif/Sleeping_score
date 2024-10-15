@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/450472988467940505/9ab951e1a43b4a85a4ea4dae3546ec71/artifacts
+end_time: 1728921075869
+entry_point_name: ''
+experiment_id: '450472988467940505'
+lifecycle_stage: active
+run_id: 9ab951e1a43b4a85a4ea4dae3546ec71
+run_name: Gradient Boosting with activity type 2 and 3 removed | 3-Fold cross validation
+run_uuid: 9ab951e1a43b4a85a4ea4dae3546ec71
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728921072159
+status: 3
+tags: []
+user_id: flori

@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/450472988467940505/72dd238538d145a9bec64cd2e2142fca/artifacts
+deleted_time: 1728913912437
+end_time: 1728913898824
+entry_point_name: ''
+experiment_id: '450472988467940505'
+lifecycle_stage: deleted
+run_id: 72dd238538d145a9bec64cd2e2142fca
+run_name: Linear regression with features from feature selection | 3-Fold cross validation
+run_uuid: 72dd238538d145a9bec64cd2e2142fca
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728913892073
+status: 3
+tags: []
+user_id: flori

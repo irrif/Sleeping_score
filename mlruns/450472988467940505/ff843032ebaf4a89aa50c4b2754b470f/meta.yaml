@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/450472988467940505/ff843032ebaf4a89aa50c4b2754b470f/artifacts
+end_time: 1728980045197
+entry_point_name: ''
+experiment_id: '450472988467940505'
+lifecycle_stage: active
+run_id: ff843032ebaf4a89aa50c4b2754b470f
+run_name: Random forest with newly created sleeping cols only | 3-Fold cross validation
+run_uuid: ff843032ebaf4a89aa50c4b2754b470f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728980041472
+status: 3
+tags: []
+user_id: flori

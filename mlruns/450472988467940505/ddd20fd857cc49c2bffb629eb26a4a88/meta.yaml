@@ -1,8 +1,9 @@
 artifact_uri: mlflow-artifacts:/450472988467940505/ddd20fd857cc49c2bffb629eb26a4a88/artifacts
+deleted_time: 1728914023229
 end_time: 1724946131968
 entry_point_name: ''
 experiment_id: '450472988467940505'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: ddd20fd857cc49c2bffb629eb26a4a88
 run_name: XGBoost with features from feature selection | {n_splits}-Fold cross validation
 run_uuid: ddd20fd857cc49c2bffb629eb26a4a88

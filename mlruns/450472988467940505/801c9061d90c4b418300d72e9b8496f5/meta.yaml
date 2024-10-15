@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/450472988467940505/801c9061d90c4b418300d72e9b8496f5/artifacts
+end_time: 1728921027309
+entry_point_name: ''
+experiment_id: '450472988467940505'
+lifecycle_stage: active
+run_id: 801c9061d90c4b418300d72e9b8496f5
+run_name: Linear regression with activity type 2 and 3 removed | 3-Fold cross validation
+run_uuid: 801c9061d90c4b418300d72e9b8496f5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728921023667
+status: 3
+tags: []
+user_id: flori
